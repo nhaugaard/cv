@@ -12,10 +12,10 @@ RUN mkdir -p /tmp/dev /tmp/prod
 COPY package.json pnpm-lock.yaml /tmp/dev/
 COPY package.json pnpm-lock.yaml /tmp/prod/
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    cd /tmp/dev && pnpm install --frozen-lockfile
-
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store,cacheKey=pnpm \  
+    cd /tmp/dev && pnpm install --frozen-lockfile  
+  
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store,cacheKey=pnpm \  
     cd /tmp/prod && pnpm install --frozen-lockfile --prod
 
 # ---------- Builder Layer ----------
