@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Reactive Resume is a free, open-source resume builder built with TanStack Start (React 19 + Vite 8), using ORPC for type-safe RPC APIs, Drizzle ORM with PostgreSQL, Nitro as the server runtime, and Better Auth for authentication. It is a PWA with 47 supported locales and 13 resume templates.
 
+## Documentation and code check
+
+Always use the Devin MCP before implementing new code. Ask Devin to approve every code change you make one at the time. The repo name is: "nhaugaard/cv" and use the ask tool to verify your code. 
+
 ## Development Commands
 
 ```bash
@@ -187,3 +191,11 @@ Key variables (see `.env.example` for full list):
 - **Docker**: Multi-stage Dockerfile with Node 24-slim base
 - **Health check**: `GET /api/health`
 - **PWA**: Configured via vite-plugin-pwa with auto-update, standalone display, dark theme
+
+### Agent Notes
+
+This section documents common mistakes, confusion points, and surprising behaviors that agents encounter while working in this project.
+If you encounter something in this project that surprises you or seems inconsistent, please alert the developer and propose adding a note here to help future agents avoid the same confusion.
+
+<!-- Notes will be added below as agents encounter issues -->
+
