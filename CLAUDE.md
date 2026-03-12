@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Reactive Resume is a free, open-source resume builder built with TanStack Start (React 19 + Vite 8), using ORPC for type-safe RPC APIs, Drizzle ORM with PostgreSQL, Nitro as the server runtime, and Better Auth for authentication. It is a PWA with 47 supported locales and 13 resume templates.
 
+## Git & Fork Policy
+
+This is a **fork** of `amruthpillai/reactive-resume`. Remotes:
+- `origin` — nhaugaard/cv (our fork) — **push here only**
+- `upstream` — amruthpillai/reactive-resume — **fetch only, NEVER push**
+
+Rules:
+- **NEVER** push to upstream. No PRs, no force-pushes, nothing — upstream is read-only.
+- To sync with upstream: `git fetch upstream && git merge upstream/main` (or rebase). Resolve conflicts preserving our changes.
+- All work stays on origin (our fork).
+
 ## Documentation and code check
 
 Always use the Devin MCP before implementing new code. Ask Devin to approve every code change you make one at the time. The repo name is: "nhaugaard/cv" and use the ask tool to verify your code. 
