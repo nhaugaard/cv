@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { createFileRoute } from "@tanstack/react-router";
+import { logger } from "@/utils/logger";
 import { registerPrompts } from "./-helpers/prompts";
 import { registerResources } from "./-helpers/resources";
 import { registerTools } from "./-helpers/tools";
@@ -51,7 +52,10 @@ export const Route = createFileRoute("/mcp/")({
 
 					return await transport.handleRequest(request);
 				} catch (error) {
-					console.error(`Error handling request: ${error instanceof Error ? error.message : String(error)}`);
+					logger.error("MCP request failed", {
+						route: "/mcp",
+						error,
+					});
 
 					return Response.json({
 						id: null,

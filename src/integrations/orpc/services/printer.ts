@@ -1,6 +1,6 @@
 import { ORPCError } from "@orpc/server";
 import type { InferSelectModel } from "drizzle-orm";
-import puppeteer, { type Browser, type ConnectOptions } from "puppeteer-core";
+import puppeteer, { type Browser, type ConnectOptions, type Page } from "puppeteer-core";
 import type { schema } from "@/integrations/drizzle";
 import { pageDimensionsAsPixels } from "@/schema/page";
 import { printMarginTemplates } from "@/schema/templates";
@@ -99,18 +99,19 @@ export const printerService = {
 		const token = generatePrinterToken(id);
 		const url = `${baseUrl}/printer/${id}?token=${token}`;
 
-		// Step 3: Calculate PDF margins
-		// Some templates require margins to be applied via PDF (they use print:p-0 to remove CSS padding)
-		// Convert from CSS pixels to PDF points (divide by 0.75 since 1pt = 0.75px at 72dpi)
-		let marginX = 0;
-		let marginY = 0;
+		// Step 3: Calculate print paddings for templates that disable CSS padding in print mode.
+		// We render these margins inside the page (not via Puppeteer's PDF margins), so the margin
+		// area matches the resume background color instead of staying white.
+		let pagePaddingX = 0;
+		let pagePaddingY = 0;
 
 		if (printMarginTemplates.includes(template)) {
-			marginX = Math.round(data.metadata.page.marginX / 0.75);
-			marginY = Math.round(data.metadata.page.marginY / 0.75);
+			pagePaddingX = data.metadata.page.marginX;
+			pagePaddingY = data.metadata.page.marginY;
 		}
 
 		let browser: Browser | null = null;
+		let page: Page | null = null;
 
 		try {
 			// Step 4: Connect to the browser and navigate to the printer route
@@ -119,7 +120,7 @@ export const printerService = {
 			// Set locale cookie so the resume renders in the correct language
 			await browser.setCookie({ name: "locale", value: locale, domain });
 
-			const page = await browser.newPage();
+			page = await browser.newPage();
 
 			// Wait for the page to fully load (network idle + custom loaded attribute)
 			await page.emulateMediaType("print");
@@ -134,25 +135,70 @@ export const printerService = {
 			const isFreeForm = format === "free-form";
 
 			const contentHeight = await page.evaluate(
-				(marginY: number, isFreeForm: boolean, minPageHeight: number) => {
+				(
+					pagePaddingX: number,
+					pagePaddingY: number,
+					isFreeForm: boolean,
+					minPageHeight: number,
+					backgroundColor: string,
+				) => {
 					const root = document.documentElement;
+					const body = document.body;
 					const pageElements = document.querySelectorAll("[data-page-index]");
+					const pageContentElements = document.querySelectorAll(".page-content");
 					const container = document.querySelector(".resume-preview-container") as HTMLElement | null;
 
+					// Ensure PDF margins inherit the resume background color instead of defaulting to white.
+					root.style.backgroundColor = backgroundColor;
+					body.style.backgroundColor = backgroundColor;
+					root.style.margin = "0";
+					body.style.margin = "0";
+					root.style.padding = "0";
+					body.style.padding = "0";
+
+					for (const el of pageElements) {
+						const pageWrapper = el as HTMLElement;
+						const pageSurface = pageWrapper.querySelector(".page") as HTMLElement | null;
+
+						pageWrapper.style.backgroundColor = backgroundColor;
+						pageWrapper.style.breakInside = "auto";
+
+						if (pageSurface) pageSurface.style.backgroundColor = backgroundColor;
+					}
+
+					// Apply print-only margins as padding inside each page's content surface.
+					if (pagePaddingX > 0 || pagePaddingY > 0) {
+						for (const el of pageContentElements) {
+							const pageContent = el as HTMLElement;
+
+							pageContent.style.boxSizing = "border-box";
+							// Ensure padding is repeated on every printed fragment when content
+							// flows across physical PDF pages (not just the first fragment).
+							pageContent.style.boxDecorationBreak = "clone";
+							pageContent.style.setProperty("-webkit-box-decoration-break", "clone");
+							if (pagePaddingX > 0) {
+								pageContent.style.paddingLeft = `${pagePaddingX}pt`;
+								pageContent.style.paddingRight = `${pagePaddingX}pt`;
+							}
+							if (pagePaddingY > 0) {
+								pageContent.style.paddingTop = `${pagePaddingY}pt`;
+								pageContent.style.paddingBottom = `${pagePaddingY}pt`;
+							}
+						}
+					}
+
 					if (isFreeForm) {
-						// For free-form: add visual gaps between pages, then measure total height
-						// Convert marginY from PDF points to CSS pixels (1pt = 0.75px)
-						const marginYAsPixels = marginY * 0.75;
 						const numberOfPages = pageElements.length;
 
 						// Add margin between pages (except the last one)
 						for (let i = 0; i < numberOfPages - 1; i++) {
 							const pageEl = pageElements[i] as HTMLElement;
-							pageEl.style.marginBottom = `${marginYAsPixels}px`;
+							if (pagePaddingY > 0) pageEl.style.marginBottom = `${pagePaddingY}pt`;
 						}
 
 						// Now measure the total height (margins are now part of the DOM)
 						let totalHeight = 0;
+
 						for (const el of pageElements) {
 							const pageEl = el as HTMLElement;
 							// offsetHeight includes padding and border, but not margin
@@ -164,23 +210,13 @@ export const printerService = {
 						return Math.max(totalHeight, minPageHeight);
 					}
 
-					// For A4/Letter: existing behavior
-					// The --page-height CSS variable controls the height of each resume page.
-					// We need to reduce it by the PDF margins so content fits within the printable area.
-					// Without this, content would overflow and create empty pages.
-					const rootHeight = getComputedStyle(root).getPropertyValue("--page-height").trim();
-					const containerHeight = container
-						? getComputedStyle(container).getPropertyValue("--page-height").trim()
-						: null;
-					const currentHeight = containerHeight || rootHeight;
-					const heightValue = Math.min(Number.parseFloat(currentHeight), minPageHeight);
+					// For A4/Letter
+					const heightValue = minPageHeight;
 
-					if (!Number.isNaN(heightValue)) {
-						// Subtract top + bottom margins from page height
-						const newHeight = `${heightValue - marginY}px`;
-						if (container) container.style.setProperty("--page-height", newHeight);
-						root.style.setProperty("--page-height", newHeight);
-					}
+					// Keep page height fixed and let in-page padding (if any) define content bounds.
+					const newHeight = `${heightValue}px`;
+					if (container) container.style.setProperty("--page-height", newHeight);
+					root.style.setProperty("--page-height", newHeight);
 
 					// Add page break CSS to each resume page element (identified by data-page-index attribute)
 					// This ensures each visual resume page starts a new PDF page
@@ -189,7 +225,10 @@ export const printerService = {
 						const index = Number.parseInt(element.getAttribute("data-page-index") ?? "0", 10);
 
 						// Force a page break before each page except the first
-						if (index > 0) element.style.breakBefore = "page";
+						if (index > 0) {
+							element.style.breakBefore = "page";
+							element.style.pageBreakBefore = "always";
+						}
 
 						// Allow content within a page to break naturally if it overflows
 						// (e.g., if a single page has more content than fits on one PDF page)
@@ -198,9 +237,11 @@ export const printerService = {
 
 					return null; // Fixed height from pageDimensionsAsPixels for A4/Letter
 				},
-				marginY,
+				pagePaddingX,
+				pagePaddingY,
 				isFreeForm,
 				pageDimensionsAsPixels[format].height,
+				data.metadata.design.colors.background,
 			);
 
 			// Step 6: Generate the PDF with the specified dimensions and margins
@@ -216,13 +257,11 @@ export const printerService = {
 				printBackground: true, // Includes background colors and images
 				margin: {
 					bottom: 0,
-					top: marginY,
-					right: marginX,
-					left: marginX,
+					top: 0,
+					right: 0,
+					left: 0,
 				},
 			});
-
-			await page.close();
 
 			// Step 7: Upload the generated PDF to storage
 			const result = await uploadFile({
@@ -236,6 +275,8 @@ export const printerService = {
 			return result.url;
 		} catch (error) {
 			throw new ORPCError("INTERNAL_SERVER_ERROR", error as Error);
+		} finally {
+			if (page) await page.close().catch(() => null);
 		}
 	},
 
@@ -289,21 +330,20 @@ export const printerService = {
 		const url = `${baseUrl}/printer/${id}?token=${token}`;
 
 		let browser: Browser | null = null;
+		let page: Page | null = null;
 
 		try {
 			browser = await getBrowser();
 
 			await browser.setCookie({ name: "locale", value: locale, domain });
 
-			const page = await browser.newPage();
+			page = await browser.newPage();
 
 			await page.setViewport(pageDimensionsAsPixels.a4);
 			await page.goto(url, { waitUntil: "networkidle0" });
 			await page.waitForFunction(() => document.body.getAttribute("data-wf-loaded") === "true", { timeout: 5_000 });
 
 			const screenshotBuffer = await page.screenshot({ type: "webp", quality: 80 });
-
-			await page.close();
 
 			const result = await uploadFile({
 				userId,
@@ -316,6 +356,8 @@ export const printerService = {
 			return result.url;
 		} catch (error) {
 			throw new ORPCError("INTERNAL_SERVER_ERROR", error as Error);
+		} finally {
+			if (page) await page.close().catch(() => null);
 		}
 	},
 };

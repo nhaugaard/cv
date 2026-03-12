@@ -18,7 +18,7 @@ export const printerRouter = {
 		.input(z.object({ id: z.string().describe("The unique identifier of the resume to export.") }))
 		.output(z.object({ url: z.string().describe("The URL to download the generated PDF file.") }))
 		.handler(async ({ input, context }) => {
-			const { id, data, userId } = await resumeService.getByIdForPrinter({ id: input.id });
+			const { id, data, userId } = await resumeService.getByIdForPrinter({ id: input.id, userId: context.user?.id });
 			const url = await printerService.printResumeAsPDF({ id, data, userId });
 
 			if (!context.user) {
@@ -41,9 +41,13 @@ export const printerRouter = {
 		})
 		.input(z.object({ id: z.string().describe("The unique identifier of the resume.") }))
 		.output(z.object({ url: z.string().nullable().describe("The URL to the screenshot image, or null.") }))
-		.handler(async ({ input }) => {
+		.handler(async ({ context, input }) => {
 			try {
-				const { id, data, userId, updatedAt } = await resumeService.getByIdForPrinter({ id: input.id });
+				const { id, data, userId, updatedAt } = await resumeService.getByIdForPrinter({
+					id: input.id,
+					userId: context.user.id,
+				});
+
 				const url = await printerService.getResumeScreenshot({ id, data, userId, updatedAt });
 
 				return { url };

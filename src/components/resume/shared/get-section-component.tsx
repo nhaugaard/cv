@@ -55,114 +55,129 @@ function renderItemByType(type: CustomSectionType, item: CustomSectionItem, item
 		.exhaustive();
 }
 
+type SectionProps = { id: string };
+
 export function getSectionComponent(
 	section: "summary" | SectionType | (string & {}),
 	{ sectionClassName, itemClassName }: SectionComponentProps = {},
 ) {
 	return match(section)
 		.with("summary", () => {
-			const SummarySection = ({ id: _id }: { id: string }) => <PageSummary className={sectionClassName} />;
+			const SummarySection = (_: SectionProps) => <PageSummary className={sectionClassName} />;
+
 			return SummarySection;
 		})
 		.with("profiles", () => {
-			const ProfilesSection = ({ id: _id }: { id: string }) => (
+			const ProfilesSection = (_: SectionProps) => (
 				<PageSection type="profiles" className={sectionClassName}>
 					{(item) => <ProfilesItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return ProfilesSection;
 		})
 		.with("experience", () => {
-			const ExperienceSection = ({ id: _id }: { id: string }) => (
+			const ExperienceSection = (_: SectionProps) => (
 				<PageSection type="experience" className={sectionClassName}>
 					{(item) => <ExperienceItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return ExperienceSection;
 		})
 		.with("education", () => {
-			const EducationSection = ({ id: _id }: { id: string }) => (
+			const EducationSection = (_: SectionProps) => (
 				<PageSection type="education" className={sectionClassName}>
 					{(item) => <EducationItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return EducationSection;
 		})
 		.with("projects", () => {
-			const ProjectsSection = ({ id: _id }: { id: string }) => (
+			const ProjectsSection = (_: SectionProps) => (
 				<PageSection type="projects" className={sectionClassName}>
 					{(item) => <ProjectsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return ProjectsSection;
 		})
 		.with("skills", () => {
-			const SkillsSection = ({ id: _id }: { id: string }) => (
+			const SkillsSection = (_: SectionProps) => (
 				<PageSection type="skills" className={sectionClassName}>
 					{(item) => <SkillsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return SkillsSection;
 		})
 		.with("languages", () => {
-			const LanguagesSection = ({ id: _id }: { id: string }) => (
+			const LanguagesSection = (_: SectionProps) => (
 				<PageSection type="languages" className={sectionClassName}>
 					{(item) => <LanguagesItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return LanguagesSection;
 		})
 		.with("interests", () => {
-			const InterestsSection = ({ id: _id }: { id: string }) => (
+			const InterestsSection = (_: SectionProps) => (
 				<PageSection type="interests" className={sectionClassName}>
 					{(item) => <InterestsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return InterestsSection;
 		})
 		.with("awards", () => {
-			const AwardsSection = ({ id: _id }: { id: string }) => (
+			const AwardsSection = (_: SectionProps) => (
 				<PageSection type="awards" className={sectionClassName}>
 					{(item) => <AwardsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return AwardsSection;
 		})
 		.with("certifications", () => {
-			const CertificationsSection = ({ id: _id }: { id: string }) => (
+			const CertificationsSection = (_: SectionProps) => (
 				<PageSection type="certifications" className={sectionClassName}>
 					{(item) => <CertificationsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return CertificationsSection;
 		})
 		.with("publications", () => {
-			const PublicationsSection = ({ id: _id }: { id: string }) => (
+			const PublicationsSection = (_: SectionProps) => (
 				<PageSection type="publications" className={sectionClassName}>
 					{(item) => <PublicationsItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return PublicationsSection;
 		})
 		.with("volunteer", () => {
-			const VolunteerSection = ({ id: _id }: { id: string }) => (
+			const VolunteerSection = (_: SectionProps) => (
 				<PageSection type="volunteer" className={sectionClassName}>
 					{(item) => <VolunteerItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return VolunteerSection;
 		})
 		.with("references", () => {
-			const ReferencesSection = ({ id: _id }: { id: string }) => (
+			const ReferencesSection = (_: SectionProps) => (
 				<PageSection type="references" className={sectionClassName}>
 					{(item) => <ReferencesItem {...item} className={itemClassName} />}
 				</PageSection>
 			);
+
 			return ReferencesSection;
 		})
 		.otherwise(() => {
 			// Custom section - render based on its type
-			const CustomSectionComponent = ({ id }: { id: string }) => {
+			const CustomSectionComponent = ({ id }: SectionProps) => {
 				const customSection = useResumeStore((state) => state.resume.data.customSections.find((s) => s.id === id));
 
 				if (!customSection) return null;

@@ -1,4 +1,7 @@
 {
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 	"biome.enabled": true,
 	"editor.codeActionsOnSave": {
 		"source.biome": "explicit",
@@ -15,16 +18,16 @@
 	},
 	"files.watcherExclude": {
 		"**/routeTree.gen.ts": true,
-		"pnpm-lock.yaml": true,
-		"locales/**.po": true
+		"locales/**.po": true,
+		"pnpm-lock.yaml": true
 	},
 	"i18n-ally.enabledParsers": ["po"],
 	"i18n-ally.localesPaths": ["locales"],
 	"i18n-ally.sourceLanguage": "en-US",
 	"search.exclude": {
 		"**/routeTree.gen.ts": true,
-		"pnpm-lock.yaml": true,
-		"locales/**.po": true
+		"locales/**.po": true,
+		"pnpm-lock.yaml": true
 	},
 	"tailwindCSS.classFunctions": ["cn", "cva"],
 	"tailwindCSS.experimental.classRegex": [
@@ -33,5 +36,5 @@
 		["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	],
 	"tailwindCSS.experimental.configFile": "src/styles/globals.css",
-	"typescript.experimental.useTsgo": true
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

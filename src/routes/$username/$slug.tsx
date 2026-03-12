@@ -9,9 +9,12 @@ import { ResumePreview } from "@/components/resume/preview";
 import { useResumeStore } from "@/components/resume/store/resume";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { orpc } from "@/integrations/orpc/client";
+import { orpc, type RouterOutput } from "@/integrations/orpc/client";
+import type { ResumeData } from "@/schema/resume/data";
 import { downloadFromUrl } from "@/utils/file";
 import { cn } from "@/utils/style";
+
+type LoaderData = Omit<RouterOutput["resume"]["getBySlug"], "data"> & { data: ResumeData };
 
 export const Route = createFileRoute("/$username/$slug")({
 	component: RouteComponent,
@@ -23,7 +26,7 @@ export const Route = createFileRoute("/$username/$slug")({
 			orpc.resume.getBySlug.queryOptions({ input: { username, slug } }),
 		);
 
-		return { resume };
+		return { resume: resume as LoaderData };
 	},
 	head: ({ loaderData }) => ({
 		meta: [{ title: loaderData ? `${loaderData.resume.name} - Reactive Resume` : "Reactive Resume" }],

@@ -2,7 +2,6 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -130,6 +129,14 @@
 
 @utility aspect-page {
 	aspect-ratio: 1 / 1.4142;
+}
+
+@utility no-scrollbar {
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 @layer base {

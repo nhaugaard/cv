@@ -11,15 +11,10 @@ type PageSummaryProps = {
 export function PageSummary({ className }: PageSummaryProps) {
 	const section = useResumeStore((state) => state.resume.data.summary);
 
+	if (section.hidden || !stripHtml(section.content)) return null;
+
 	return (
-		<section
-			className={cn(
-				"page-section page-section-summary",
-				section.hidden && "hidden",
-				!stripHtml(section.content) && "hidden",
-				className,
-			)}
-		>
+		<section className={cn("page-section page-section-summary", className)}>
 			<h6 className="mb-1.5 text-(--page-primary-color)">{section.title || getSectionTitle("summary")}</h6>
 
 			<div className="section-content">

@@ -29,10 +29,6 @@ export function DitgarTemplate({ pageIndex, pageLayout }: TemplateProps) {
 	const isFirstPage = pageIndex === 0;
 	const { main, sidebar, fullWidth } = pageLayout;
 
-	const SummaryComponent = getSectionComponent("summary", {
-		sectionClassName: cn(sectionClassName, "px-(--page-margin-x) pt-(--page-margin-y)"),
-	});
-
 	return (
 		<div className="template-ditgar page-content">
 			{/* Sidebar Background */}
@@ -55,15 +51,11 @@ export function DitgarTemplate({ pageIndex, pageLayout }: TemplateProps) {
 				)}
 
 				<main data-layout="main" className={cn("main group z-10", !fullWidth ? "col-span-2" : "col-span-3")}>
-					{isFirstPage && <SummaryComponent id="summary" />}
-
 					<div className="space-y-4 px-(--page-margin-x) pt-(--page-margin-y)">
-						{main
-							.filter((section) => section !== "summary")
-							.map((section) => {
-								const Component = getSectionComponent(section, { sectionClassName });
-								return <Component key={section} id={section} />;
-							})}
+						{main.map((section) => {
+							const Component = getSectionComponent(section, { sectionClassName });
+							return <Component key={section} id={section} />;
+						})}
 					</div>
 				</main>
 			</div>
@@ -78,36 +70,46 @@ function Header() {
 		<div className="page-header space-y-4 bg-(--page-primary-color) px-(--page-margin-x) py-(--page-margin-y) text-(--page-background-color)">
 			<PagePicture />
 
-			<div>
-				<h2 className="font-bold text-2xl">{basics.name}</h2>
-				<p>{basics.headline}</p>
+			<div className="basics-header">
+				<h2 className="basics-name font-bold text-2xl">{basics.name}</h2>
+				<p className="basics-headline">{basics.headline}</p>
 			</div>
 
-			<div className="flex flex-col items-start gap-y-2 text-sm [&>div>i]:text-(--page-background-color)!">
+			<div className="basics-items flex flex-col items-start gap-y-2 text-sm [&>div>i]:text-(--page-background-color)!">
 				{basics.location && (
-					<div className="flex items-center gap-x-1.5">
+					<div className="basics-item-location flex items-center gap-x-1.5">
 						<PageIcon icon="map-pin" className="ph-bold" />
 						<div>{basics.location}</div>
 					</div>
 				)}
+
 				{basics.phone && (
-					<div className="flex items-center gap-x-1.5">
+					<div className="basics-item-phone flex items-center gap-x-1.5">
 						<PageIcon icon="phone" className="ph-bold" />
 						<PageLink url={`tel:${basics.phone}`} label={basics.phone} />
 					</div>
 				)}
+
 				{basics.email && (
-					<div className="flex items-center gap-x-1.5">
+					<div className="basics-item-email flex items-center gap-x-1.5">
 						<PageIcon icon="at" className="ph-bold" />
 						<PageLink url={`mailto:${basics.email}`} label={basics.email} />
 					</div>
 				)}
+
 				{basics.website.url && (
-					<div className="flex items-center gap-x-1.5">
+					<div className="basics-item-website flex items-center gap-x-1.5">
 						<PageIcon icon="globe" className="ph-bold" />
 						<PageLink {...basics.website} />
 					</div>
 				)}
+
+				{basics.customFields.map((field) => (
+					<div key={field.id} className="basics-item-custom flex items-center gap-x-1.5">
+						<PageIcon icon={field.icon} />
+						{field.link ? <PageLink url={field.link} label={field.text} /> : <span>{field.text}</span>}
+					</div>
+				))}
 			</div>
 		</div>
 	);

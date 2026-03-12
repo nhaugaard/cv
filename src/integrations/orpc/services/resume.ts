@@ -133,7 +133,7 @@ export const resumeService = {
 		return resume;
 	},
 
-	getByIdForPrinter: async (input: { id: string }) => {
+	getByIdForPrinter: async (input: { id: string; userId?: string }) => {
 		const [resume] = await db
 			.select({
 				id: schema.resume.id,
@@ -146,7 +146,11 @@ export const resumeService = {
 				updatedAt: schema.resume.updatedAt,
 			})
 			.from(schema.resume)
-			.where(eq(schema.resume.id, input.id));
+			.where(
+				input.userId
+					? and(eq(schema.resume.id, input.id), eq(schema.resume.userId, input.userId))
+					: eq(schema.resume.id, input.id),
+			);
 
 		if (!resume) throw new ORPCError("NOT_FOUND");
 

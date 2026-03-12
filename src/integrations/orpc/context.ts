@@ -28,7 +28,7 @@ async function getUserFromApiKey(apiKey: string): Promise<User | null> {
 		const result = await auth.api.verifyApiKey({ body: { key: apiKey } });
 		if (!result.key || !result.valid) return null;
 
-		const [userResult] = await db.select().from(user).where(eq(user.id, result.key.userId)).limit(1);
+		const [userResult] = await db.select().from(user).where(eq(user.id, result.key.referenceId)).limit(1);
 		if (!userResult) return null;
 
 		return userResult;
@@ -70,10 +70,11 @@ export const protectedProcedure = publicProcedure.use(async ({ context, next }) 
  */
 export const serverOnlyProcedure = publicProcedure.use(async ({ context, next }) => {
 	const headers = context.reqHeaders ?? new Headers();
+	const isDebugBypassEnabled = env.FLAG_DEBUG_PRINTER && process.env.NODE_ENV === "development";
 
 	// Check for the custom header that indicates this is a server-side call
 	// Server-side calls using createRouterClient have this header set
-	const isServerSideCall = env.FLAG_DEBUG_PRINTER || headers.get("x-server-side-call") === "true";
+	const isServerSideCall = isDebugBypassEnabled || headers.get("x-server-side-call") === "true";
 
 	// If the header is not present, this is a client-side HTTP request - reject it
 	if (!isServerSideCall) {
