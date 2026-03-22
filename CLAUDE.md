@@ -4,18 +4,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Reactive Resume is a free, open-source resume builder built with TanStack Start (React 19 + Vite 8), using ORPC for type-safe RPC APIs, Drizzle ORM with PostgreSQL, Nitro as the server runtime, and Better Auth for authentication. It is a PWA with 47 supported locales and 13 resume templates.
+**CV Builder** is a commercial SaaS web application for AI-powered resume building and career management. It competes with Resume.io, Enhancv, Rezi, Teal, and similar paid services. The product is built on the Reactive Resume open-source foundation but is being developed into a distinct, monetizable product with features that go well beyond the upstream project.
 
-## Git & Fork Policy
+**Key differentiators we are building:**
+- AI Dashboard Assistant — conversational, v0-style resume creation from the main dashboard
+- Multi-provider AI (OpenAI, Anthropic, Google, Ollama) with BYOK (Bring Your Own Key)
+- MCP server for LLM integration — no other resume builder has this
+- Job description analysis and ATS scoring
+- Cover letter generation
+- Privacy-first, self-hostable architecture
 
-This is a **fork** of `amruthpillai/reactive-resume`. Remotes:
-- `origin` — nhaugaard/cv (our fork) — **push here only**
+**Tech stack:** TanStack Start (React 19 + Vite 8), ORPC for type-safe RPC APIs, Drizzle ORM with PostgreSQL, Nitro server runtime, Better Auth, Vercel AI SDK v6. PWA with 47 locales and 13 resume templates.
+
+**This is a product, not an open-source contribution.** When building features, think like a product engineer: prioritize user experience, conversion, and retention — not just technical correctness.
+
+## Git & Upstream Sync
+
+The codebase originated as a fork of `amruthpillai/reactive-resume`. We periodically sync bug fixes and community contributions from upstream, but our product diverges significantly.
+
+Remotes:
+- `origin` — nhaugaard/cv (our product repo) — **push here only**
 - `upstream` — amruthpillai/reactive-resume — **fetch only, NEVER push**
 
 Rules:
 - **NEVER** push to upstream. No PRs, no force-pushes, nothing — upstream is read-only.
-- To sync with upstream: `git fetch upstream && git merge upstream/main` (or rebase). Resolve conflicts preserving our changes.
-- All work stays on origin (our fork).
+- To sync: `git fetch upstream && git merge upstream/main`. Resolve conflicts preserving **our changes** — our product features always take priority over upstream.
+- New features should be built in separate files/folders where possible to minimize merge conflicts with upstream.
 
 ## Documentation and code check
 
