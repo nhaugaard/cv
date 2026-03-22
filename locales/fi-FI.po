@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-05 10:46\n"
+"PO-Revision-Date: 2026-03-19 09:07\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -45,12 +45,36 @@ msgstr "{0, plural, one {# kohde} other {# kohdetta}}"
 #. placeholder {0}: item.roles.length
 #: src/routes/builder/$resumeId/-sidebar/left/sections/experience.tsx
 msgid "{0, plural, one {# role} other {# roles}}"
-msgstr ""
+msgstr "{0, plural, one {# rooli} other {# roolia}}"
+
+#. placeholder {0}: quota.used
+#. placeholder {1}: quota.limit
+#: src/routes/dashboard/job-search/index.tsx
+msgid "{0} / {1} requests used"
+msgstr "{0} / {1} käytetyt pyynnöt"
+
+#. placeholder {0}: Math.floor(diffDays / 30)
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{0} months ago"
+msgstr "{0} kuukautta sitten"
+
+#. placeholder {0}: Math.floor(diffDays / 7)
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{0} weeks ago"
+msgstr "{0} viikkoa sitten"
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "{column, plural, one {# Column} other {# Columns}}"
 msgstr "{column, plural, one {# sarake} other {# saraketta}}"
+
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{diffDays} days ago"
+msgstr "{diffDays} päivää sitten"
+
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "{used} of {limit} requests used ({remaining} remaining)"
+msgstr "{used} käytetyt {limit} pyynnöt ({remaining} jäljellä)"
 
 #: src/routes/_home/-sections/hero.tsx
 msgid "<0>Finally,</0><1>A free and open-source resume builder</1>"
@@ -202,7 +226,7 @@ msgstr "Lisää sarake ennen"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Add multiple roles to show career progression at the same company."
-msgstr ""
+msgstr "Lisää useita rooleja näyttääksesi uraetenemisen samassa yrityksessä."
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Add Page"
@@ -210,7 +234,7 @@ msgstr "Lisää sivu"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Add Role"
-msgstr ""
+msgstr "Lisää rooli"
 
 #: src/components/input/rich-input.tsx
 msgid "Add Row After"
@@ -222,7 +246,16 @@ msgstr "Lisää rivi ennen"
 
 #: src/components/ai/chat.tsx
 msgid "Added"
-msgstr ""
+msgstr "Lisätty"
+
+#. placeholder {0}: skillsToSync.length
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Added {0} new skills to your original resume"
+msgstr "Lisäsit {0} uusia taitoja alkuperäiseen ansioluetteloosi."
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Advanced Filters"
+msgstr "Edistyneet suodattimet"
 
 #: src/utils/locale.ts
 msgid "Afrikaans"
@@ -235,7 +268,11 @@ msgstr "AI"
 
 #: src/components/ai/chat.tsx
 msgid "AI Chat"
-msgstr ""
+msgstr "Tekoälychat"
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "AI returned some invalid references"
+msgstr "AI palautti joitakin virheellisiä viittauksia"
 
 #: src/utils/locale.ts
 msgid "Albanian"
@@ -246,8 +283,8 @@ msgid "Allow Public Access"
 msgstr "Salli julkinen käyttö"
 
 #: src/routes/auth/register.tsx
-msgid "Already have an account? <0><1>Sign in now <2/></1></0>"
-msgstr "Onko sinulla jo tili? <0><1>Kirjaudu sisään nyt <2/></1></0>"
+msgid "Already have an account? <0/>"
+msgstr "Onko sinulla jo tili? <0/>"
 
 #: src/utils/locale.ts
 msgid "Amharic"
@@ -265,6 +302,19 @@ msgstr "Ansioluettelosi tuonnissa tapahtui tuntematon virhe."
 #: src/routes/_home/-sections/features.tsx
 msgid "And many more..."
 msgstr "Ja paljon muuta..."
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Any level"
+msgstr "Mikä tahansa taso"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Any time"
+msgstr "Milloin tahansa"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Any type"
+msgstr "Mikä tahansa tyyppi"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Anyone visiting the resume's public URL must enter this password to access it."
@@ -297,6 +347,10 @@ msgstr "API-avaimet"
 msgid "API Reference"
 msgstr "API-viite"
 
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "API Usage"
+msgstr "API:n käyttö"
+
 #: src/routes/dashboard/-components/sidebar.tsx
 msgid "App"
 msgstr "Sovellus"
@@ -305,13 +359,25 @@ msgstr "Sovellus"
 msgid "Application Statistics"
 msgstr "Sovelluksen tilastot"
 
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Apply"
+msgstr "Hae"
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Apply Link"
+msgstr "Käytä linkkiä"
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Apply Via"
+msgstr "Hae kautta"
+
 #: src/utils/locale.ts
 msgid "Arabic"
 msgstr "arabia"
 
 #: src/hooks/use-form-blocker.tsx
 msgid "Are you sure you want to close this dialog?"
-msgstr ""
+msgstr "Haluatko varmasti sulkea tämän ikkunan?"
 
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "Are you sure you want to delete this API key?"
@@ -350,7 +416,7 @@ msgstr "Tekoäly"
 
 #: src/components/ai/chat.tsx
 msgid "Ask me to update your resume..."
-msgstr ""
+msgstr "Pyydä minua päivittämään ansioluettelosi..."
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
@@ -404,6 +470,10 @@ msgstr "Perustiedot"
 #: src/routes/_home/-sections/features.tsx
 msgid "Beautiful templates to choose from, with more on the way."
 msgstr "Kauniita mallipohjia, joista valita – ja lisää tulossa."
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Benefits"
+msgstr "Edut"
 
 #: src/utils/locale.ts
 msgid "Bengali"
@@ -485,6 +555,7 @@ msgstr "Voinko viedä ansioluetteloni PDF-muotoon?"
 #: src/dialogs/resume/sections/volunteer.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
 #: src/routes/dashboard/settings/danger-zone.tsx
 #: src/routes/dashboard/settings/profile.tsx
@@ -548,17 +619,22 @@ msgstr "kiina (perinteinen)"
 msgid "Circle"
 msgstr "Ympyrä"
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Clear all"
+msgstr "Tyhjennä kaikki"
+
 #: src/components/ai/chat.tsx
 msgid "Clear chat history"
-msgstr ""
-
-#: src/components/ui/multiple-combobox.tsx
-msgid "Clear selection"
-msgstr "Tyhjennä valinta"
+msgstr "Tyhjennä chat-historia"
 
 #: src/dialogs/resume/import.tsx
 msgid "Click here to select a file to import"
 msgstr "Napsauta tästä valitaksesi tuotavan tiedoston"
+
+#: src/components/ui/dialog.tsx
+#: src/components/ui/sheet.tsx
+msgid "Close"
+msgstr "Sulje"
 
 #: src/components/input/rich-input.tsx
 msgid "Code Block"
@@ -581,6 +657,10 @@ msgstr "Yritys"
 msgid "Completely free, forever, no hidden costs."
 msgstr "Täysin ilmainen, ikuisesti, ei piilokuluja."
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Configure Job Search"
+msgstr "Määritä työnhaku"
+
 #: src/dialogs/api-key/create.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
@@ -595,7 +675,7 @@ msgstr "Yhdistä"
 #: src/dialogs/resume/sections/cover-letter.tsx
 #: src/dialogs/resume/sections/summary-item.tsx
 msgid "Content"
-msgstr ""
+msgstr "Sisältö"
 
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/dialogs/auth/enable-two-factor.tsx
@@ -612,6 +692,10 @@ msgstr "Jatka siitä, mihin jäit"
 #: src/dialogs/resume/import.tsx
 msgid "Continue where you left off by importing an existing resume you created using Reactive Resume or any another resume builder. Supported formats include PDF, Microsoft Word, as well as JSON files from Reactive Resume."
 msgstr "Jatka siitä, mihin jäit, tuomalla aiemmin laatimasi ansioluettelo, jonka loit Reactive Resumella tai jollakin muulla ansioluettelon laatijalla. Tuetut muodot ovat PDF, Microsoft Word sekä Reactive Resumen JSON-tiedostot."
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Contractor"
+msgstr "Urakoitsija"
 
 #: src/routes/_home/-sections/donate.tsx
 msgid "Contributions fund bug fixes, security updates, and continuous improvements to keep the app running smoothly."
@@ -637,10 +721,18 @@ msgstr "Kopioi tämä salainen avain ja käytä sitä sovelluksissasi tietojesi 
 msgid "Copy URL"
 msgstr "Kopioi URL-osoite"
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Could not fetch jobs"
+msgstr "Työtehtäviä ei voitu noutaa"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Country"
+msgstr "Maa"
+
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Cover Letter"
-msgstr ""
+msgstr "Saatekirje"
 
 #: src/dialogs/api-key/create.tsx
 #: src/dialogs/resume/index.tsx
@@ -681,7 +773,7 @@ msgstr "Luo uusi sertifikaatti"
 
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Create a new cover letter"
-msgstr ""
+msgstr "Luo uusi saatekirje"
 
 #: src/dialogs/resume/sections/custom.tsx
 msgid "Create a new custom section"
@@ -732,7 +824,7 @@ msgstr "Luo uusi taito"
 
 #: src/dialogs/resume/sections/summary-item.tsx
 msgid "Create a new summary item"
-msgstr ""
+msgstr "Luo uusi yhteenvetokohta"
 
 #: src/dialogs/resume/sections/volunteer.tsx
 msgid "Create a new volunteer experience"
@@ -802,6 +894,10 @@ msgstr "Tietoturva"
 msgid "Date"
 msgstr "Päivämäärä"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Date Posted"
+msgstr "Lähetyspäivä"
+
 #: src/dialogs/resume/sections/education.tsx
 msgid "Degree"
 msgstr "Tutkinto"
@@ -858,12 +954,25 @@ msgstr "Poistetaan ansioluetteloasi..."
 #: src/dialogs/resume/sections/publication.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
 msgid "Description"
 msgstr "Kuvaus"
 
 #: src/utils/resume/section.tsx
 msgid "Design"
 msgstr "Ulkoasu"
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Direct"
+msgstr "Suora"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Direct Apply"
+msgstr "Suora haku"
+
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Direct apply only"
+msgstr "Vain suorat hakemukset"
 
 #: src/dialogs/auth/disable-two-factor.tsx
 #: src/routes/dashboard/settings/authentication/-components/two-factor.tsx
@@ -896,8 +1005,8 @@ msgid "Documentation"
 msgstr "Dokumentaatio"
 
 #: src/routes/auth/login.tsx
-msgid "Don't have an account? <0><1>Create one now <2/></1></0>"
-msgstr "Eikö sinulla ole tiliä? <0><1>Luo tili nyt <2/></1></0>"
+msgid "Don't have an account? <0/>"
+msgstr "Eikö sinulla ole tiliä? <0/>"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
 msgid "Donate to Reactive Resume"
@@ -909,12 +1018,20 @@ msgid "Download"
 msgstr "Lataa"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
+msgid "Download a copy of your resume as a Word document. Use this file to further customize your resume in Microsoft Word or Google Docs."
+msgstr "Lataa kopio ansioluettelostasi Word-dokumenttina. Käytä tätä tiedostoa muokataksesi ansioluetteloasi Microsoft Wordissa tai Google Docsissa."
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
 msgid "Download a copy of your resume in JSON format. Use this file for backup or to import your resume into other applications, including AI assistants."
 msgstr "Lataa kopio ansioluettelostasi JSON-muodossa. Käytä tätä tiedostoa varmuuskopiona tai tuodaksesi ansioluettelosi muihin sovelluksiin, mukaan lukien tekoälyapulaiset."
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
 msgid "Download a copy of your resume in PDF format. Use this file for printing or to easily share your resume with recruiters."
 msgstr "Lataa kopio ansioluettelostasi PDF-muodossa. Käytä tätä tiedostoa tulostamiseen tai jakaaksesi ansioluettelosi helposti rekrytoijille."
+
+#: src/routes/builder/$resumeId/-components/dock.tsx
+msgid "Download DOCX"
+msgstr "Lataa DOCX"
 
 #: src/routes/builder/$resumeId/-components/dock.tsx
 msgid "Download JSON"
@@ -961,9 +1078,21 @@ msgstr "Monistetaan ansioluetteloasi..."
 msgid "Dutch"
 msgstr "hollanti"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "e.g. 150000"
+msgstr "esim. 150000"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "e.g. 50000"
+msgstr "esim. 50000"
+
 #: src/components/ai/chat.tsx
 msgid "e.g. Change my name to..."
-msgstr ""
+msgstr "esim. Vaihda nimeni..."
+
+#: src/routes/dashboard/job-search/index.tsx
+msgid "e.g. frontend developer jobs in Berlin"
+msgstr "esim. frontend developer työpaikat Berliinissä"
 
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
@@ -1014,6 +1143,10 @@ msgstr "Otetaan kaksivaiheista todennusta käyttöön..."
 msgid "English"
 msgstr "englanti"
 
+#: src/utils/locale.ts
+msgid "English (United Kingdom)"
+msgstr "Englanti (Yhdistynyt kuningaskunta)"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "Enhance the security of your account with additional layers of protection."
 msgstr "Paranna tilisi turvallisuutta lisäsuojaustasoilla."
@@ -1042,6 +1175,10 @@ msgstr "Syötä salasanasi vahvistaaksesi kaksivaiheisen todennuksen käyttöön
 msgid "Enter your password to disable two-factor authentication. Your account will be less secure without 2FA enabled."
 msgstr "Syötä salasanasi poistaaksesi kaksivaiheisen todennuksen käytöstä. Tilisi on vähemmän suojattu ilman 2FA:ta."
 
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "Enter your RapidAPI key"
+msgstr "Syötä RapidAPI-avaimesi"
+
 #: src/routes/_home/-sections/donate.tsx
 msgid "Every contribution, big or small, makes a huge difference to the project.<0/>Thank you for your support!"
 msgstr "Jokainen panos, suuri tai pieni, vaikuttaa valtavasti projektiin.<0/>Kiitos tuestasi!"
@@ -1054,11 +1191,24 @@ msgstr "Kaikki tähän syötetty tallennetaan paikallisesti selaimeesi. Tietosi 
 msgid "Everything you need to create, customize, and share professional resumes. Built with privacy in mind, powered by open source, and completely free forever."
 msgstr "Kaikki, mitä tarvitset ammattimaisen ansioluettelon luomiseen, mukauttamiseen ja jakamiseen. Rakennettu yksityisyys edellä, avoimen lähdekoodin voimin ja täysin ilmainen ikuisesti."
 
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Exclude {value}"
+msgstr "Ei sisällä {value}"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Exclude Companies"
+msgstr "Yritysten poissulkeminen"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Exclude Keywords"
+msgstr "Sulje pois avainsanat"
+
 #: src/components/input/rich-input.tsx
 msgid "Exit Fullscreen"
-msgstr ""
+msgstr "Poistu koko näytöstä"
 
 #: src/dialogs/resume/sections/custom.tsx
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
 #: src/utils/resume/section.tsx
 msgid "Experience"
 msgstr "Työkokemus"
@@ -1084,13 +1234,21 @@ msgstr "Tutustu API-dokumentaatioon nähdäksesi, miten yhdistät Reactive Resum
 msgid "Export"
 msgstr "Vienti"
 
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Failed to duplicate resume"
+msgstr "Epäonnistui ansioluettelon kopioinnissa"
+
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Failed to setup two-factor authentication."
 msgstr "Kaksivaiheisen todennuksen käyttöönotto epäonnistui."
 
 #: src/routes/auth/login.tsx
 msgid "Failed to sign in. Please try again."
-msgstr ""
+msgstr "Kirjautuminen epäonnistui. Yritä uudelleen."
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Failed to sync skills"
+msgstr "Taitojen synkronointi epäonnistui"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Features"
@@ -1171,9 +1329,13 @@ msgstr "ranska"
 msgid "Full Width"
 msgstr "Täysi leveys"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Full-time"
+msgstr "Kokopäiväinen"
+
 #: src/components/input/rich-input.tsx
 msgid "Fullscreen"
-msgstr ""
+msgstr "Koko näyttö"
 
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
@@ -1187,6 +1349,10 @@ msgstr "saksa"
 msgid "Get Started"
 msgstr "Aloita"
 
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "Get your API key from RapidAPI by subscribing to the JSearch API."
+msgstr "Saat API-avaimesi RapidAPI:lta tilaamalla JSearch API:n."
+
 #: src/components/layout/not-found-screen.tsx
 #: src/routes/auth/verify-2fa-backup.tsx
 msgid "Go Back"
@@ -1195,6 +1361,10 @@ msgstr "Palaa takaisin"
 #: src/routes/_home/-sections/header.tsx
 msgid "Go to dashboard"
 msgstr "Siirry hallintapaneeliin"
+
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Go to Settings"
+msgstr "Siirry kohtaan Asetukset"
 
 #: src/components/command-palette/pages/navigation.tsx
 msgid "Go to..."
@@ -1337,6 +1507,10 @@ msgstr "Tuodaan ansioluetteloasi..."
 msgid "Importing..."
 msgstr "Tuodaan..."
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Include Keywords"
+msgstr "Sisällytä avainsanat"
+
 #: src/utils/locale.ts
 msgid "Indonesian"
 msgstr "indonesia"
@@ -1357,6 +1531,10 @@ msgstr "Lisää taulukko"
 #: src/utils/resume/section.tsx
 msgid "Interests"
 msgstr "Kiinnostuksen kohteet"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Intern"
+msgstr "Harjoittelija"
 
 #: src/routes/_home/-sections/faq.tsx
 msgid "Is Reactive Resume available in multiple languages?"
@@ -1381,6 +1559,24 @@ msgstr "Kursiivi"
 #: src/utils/locale.ts
 msgid "Japanese"
 msgstr "japani"
+
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Job Search"
+msgstr "Työnhaku"
+
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "Job Search API"
+msgstr "Työnhaku API"
+
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "JSearch aggregates job listings from multiple job boards using Google for Jobs. You can filter by country (ISO alpha-2 code), date posted, job type, remote options, and experience level."
+msgstr "JSearch kokoaa Google for Jobs -palvelun avulla yhteen työpaikkailmoituksia useista eri ilmoitustauluista. Voit suodattaa maittain (ISO alpha-2-koodi), ilmoituksen päivämäärän, työn tyypin, etävaihtoehtojen ja kokemustason mukaan."
+
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "JSearch API Documentation"
+msgstr "JSearch API:n dokumentaatio"
 
 #: src/components/input/rich-input.tsx
 msgid "Justify Align"
@@ -1424,6 +1620,10 @@ msgstr "Kieli"
 msgid "Languages"
 msgstr "Kielet"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Last 3 days"
+msgstr "Viimeiset 3 päivää"
+
 #. placeholder {0}: statistics.lastDownloadedAt.toDateString()
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Last downloaded on {0}"
@@ -1457,7 +1657,7 @@ msgstr "Lue lisää sisällön sovittamisesta sivulle"
 
 #: src/hooks/use-form-blocker.tsx
 msgid "Leave"
-msgstr ""
+msgstr "Poistu"
 
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "Leave empty to reset the title to the original."
@@ -1572,9 +1772,21 @@ msgstr "Marginaali (vaaka)"
 msgid "Margin (Vertical)"
 msgstr "Marginaali (pysty)"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Maximum Salary"
+msgstr "Enimmäispalkka"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Minimum Salary"
+msgstr "Vähimmäispalkka"
+
 #: src/routes/dashboard/settings/ai.tsx
 msgid "Model"
 msgstr "Malli"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "More than 3 years"
+msgstr "Yli 3 vuotta"
 
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
 msgid "Move to"
@@ -1625,14 +1837,37 @@ msgstr "Uusi salasana"
 msgid "New Section"
 msgstr "Uusi osio"
 
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "New Skills Detected"
+msgstr "Uusia taitoja havaittu"
+
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Next"
+msgstr "Seuraava"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "No Advertising, No Tracking"
 msgstr "Ei mainoksia, ei seurantaa"
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "No degree required"
+msgstr "Tutkintoa ei vaadita"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "No experience"
+msgstr "Ei kokemusta"
+
+#: src/routes/dashboard/job-search/index.tsx
+msgid "No jobs found. Try a different search query."
+msgstr "Työpaikkoja ei löytynyt. Kokeile eri hakukyselyä."
+
 #: src/components/ui/combobox.tsx
-#: src/components/ui/multiple-combobox.tsx
 msgid "No results found."
 msgstr "Tuloksia ei löytynyt."
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "No resumes found. Create a resume first."
+msgstr "Yhteenvetoja ei löytynyt. Luo ensin ansioluettelo."
 
 #: src/utils/locale.ts
 msgid "Norwegian"
@@ -1674,6 +1909,11 @@ msgstr "Avoin lähdekoodi"
 msgid "opens in new tab"
 msgstr "avautuu uuteen välilehteen"
 
+#. placeholder {0}: job.job_title
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Optimizing summary, experience, and skills for {0}"
+msgstr "Yhteenvedon, kokemuksen ja taitojen optimointi {0} varten."
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Optionally, set a password so that only people with the password can view your resume through the link."
 msgstr "Halutessasi voit asettaa salasanan, jotta vain salasanan tietävät voivat nähdä ansioluettelosi linkin kautta."
@@ -1693,11 +1933,11 @@ msgstr "Organisaatio"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Overall Period"
-msgstr ""
+msgstr "Kokonaisajanjakso"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Overall Title (optional)"
-msgstr ""
+msgstr "Yleinen nimike (valinnainen)"
 
 #: src/utils/resume/section.tsx
 msgid "Page"
@@ -1709,6 +1949,10 @@ msgstr "Sivu"
 msgid "Page {0}"
 msgstr "Sivu {0}"
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Page {currentPage}"
+msgstr "Sivu {currentPage}"
+
 #: src/components/resume/preview.tsx
 msgid "Page {pageNumber} of {totalNumberOfPages}"
 msgstr "Sivu {pageNumber} / {totalNumberOfPages}"
@@ -1716,6 +1960,10 @@ msgstr "Sivu {pageNumber} / {totalNumberOfPages}"
 #: src/components/input/rich-input.tsx
 msgid "Paragraph"
 msgstr "Kappale"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Part-time"
+msgstr "Osa-aikainen"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Passkeys & 2FA"
@@ -1822,6 +2070,10 @@ msgstr "Asetukset"
 msgid "Press <0>{RETURN_KEY}</0> or <1>{COMMA_KEY}</1> to add or save the current keyword."
 msgstr "Paina <0>{RETURN_KEY}</0> tai <1>{COMMA_KEY}</1> lisätäksesi tai tallentaaksesi nykyisen avainsanan."
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Previous"
+msgstr "Edellinen"
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 msgid "Primary Color"
 msgstr "Pääväri"
@@ -1872,6 +2124,15 @@ msgstr "Julkaisut"
 msgid "Publisher"
 msgstr "Julkaisija"
 
+#. placeholder {0}: quota.remaining
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Quota: {0} remaining"
+msgstr "Kiintiö: {0} jäljellä"
+
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "RapidAPI Key"
+msgstr "RapidAPI-avain"
+
 #: src/routes/_home/-sections/header.tsx
 msgid "Reactive Resume - Go to homepage"
 msgstr "Reactive Resume – Siirry etusivulle"
@@ -1898,7 +2159,7 @@ msgstr "Reactive Resume on avoimen lähdekoodin, yksityisyyteen keskittyvä ja t
 
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Recipient"
-msgstr ""
+msgstr "Vastaanottaja"
 
 #: src/components/level/combobox.tsx
 msgid "Rectangle"
@@ -1923,12 +2184,22 @@ msgid "Refresh"
 msgstr "Päivitä"
 
 #: src/routes/auth/forgot-password.tsx
-msgid "Remember your password? <0><1>Sign in now <2/></1></0>"
-msgstr "Muistatko salasanasi? <0><1>Kirjaudu sisään nyt <2/></1></0>"
+msgid "Remember your password? <0/>"
+msgstr "Muistatko salasanasi? <0/>"
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Remote"
+msgstr "Kaukosäädin"
+
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Remote only"
+msgstr "Vain kaukosäädin"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Remove"
-msgstr ""
+msgstr "Poista"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Remove Password"
@@ -1936,7 +2207,7 @@ msgstr "Poista salasana"
 
 #: src/components/ai/chat.tsx
 msgid "Removed"
-msgstr ""
+msgstr "Poistettu"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Removing password protection..."
@@ -1948,7 +2219,7 @@ msgstr "Nimeä uudelleen"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Reorder"
-msgstr ""
+msgstr "Järjestä uudelleen"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
 msgid "Report a Bug"
@@ -1957,6 +2228,10 @@ msgstr "Ilmoita virheestä"
 #: src/routes/_home/-sections/footer.tsx
 msgid "Report an issue"
 msgstr "Ilmoita ongelmasta"
+
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Required Skills"
+msgstr "Tarvittavat taidot"
 
 #: src/routes/dashboard/settings/profile.tsx
 msgid "Resend verification email"
@@ -1967,6 +2242,7 @@ msgid "Resending verification email..."
 msgstr "Lähetetään vahvistussähköpostia uudelleen..."
 
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Reset"
 msgstr "Palauta"
 
@@ -1986,6 +2262,12 @@ msgstr "Palautetaan salasanaasi..."
 msgid "Resources"
 msgstr "Resurssit"
 
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Resume tailored successfully"
+msgstr "Räätälöity ansioluettelo onnistuneesti"
+
 #: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/resumes.tsx
@@ -1997,13 +2279,17 @@ msgstr "Resurssit"
 msgid "Resumes"
 msgstr "Ansioluettelot"
 
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Retry"
+msgstr "Uudelleenyritys"
+
 #: src/components/input/rich-input.tsx
 msgid "Right Align"
 msgstr "Tasaa oikealle"
 
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Role Progression"
-msgstr ""
+msgstr "Roolin eteneminen"
 
 #: src/utils/locale.ts
 msgid "Romanian"
@@ -2016,6 +2302,11 @@ msgstr "Kierrätys"
 #: src/utils/locale.ts
 msgid "Russian"
 msgstr "venäjä"
+
+#. placeholder {0}: selectedSkills.size
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Save {0} Skills"
+msgstr "Tallenna {0} Taidot"
 
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
@@ -2045,6 +2336,15 @@ msgstr "Skannaa alla oleva QR-koodi haluamallasi todennussovelluksella. Voit my�
 msgid "School"
 msgstr "Oppilaitos"
 
+#: src/routes/dashboard/job-search/index.tsx
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Search"
+msgstr "Etsi"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Search countries"
+msgstr "Etsi maita"
+
 #: src/components/input/icon-picker.tsx
 #: src/components/input/icon-picker.tsx
 msgid "Search for an icon"
@@ -2055,9 +2355,8 @@ msgid "Search for..."
 msgstr "Etsi..."
 
 #: src/components/ui/combobox.tsx
-#: src/components/ui/multiple-combobox.tsx
 msgid "Search..."
-msgstr "Hae..."
+msgstr "Etsi..."
 
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Secret copied to clipboard."
@@ -2067,14 +2366,24 @@ msgstr "Salaisuus kopioitu leikepöydälle."
 msgid "Section Type"
 msgstr "Osion tyyppi"
 
+#. placeholder {0}: job.job_title
+#. placeholder {1}: job.employer_name
+#. placeholder {2}: aiEnabled ? " and the AI will optimize it for this position." : "."
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Select a resume to tailor for \"{0}\" at {1}. A copy will be created{2}"
+msgstr "Valitse räätälöitävä ansioluettelo \"{0}\" osoitteessa {1}. Kopio luodaan{2}"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Select country"
+msgstr "Valitse maa"
+
 #: src/components/ui/combobox.tsx
-#: src/components/ui/multiple-combobox.tsx
 msgid "Select..."
 msgstr "Valitse..."
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Self-Host with Docker"
-msgstr "Itseisännöi Dockerilla"
+msgstr "Itse-isännöinti Dockerilla"
 
 #: src/routes/auth/forgot-password.tsx
 msgid "Send Password Reset Email"
@@ -2141,7 +2450,7 @@ msgstr "Näytä"
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
 msgid "Show link in title"
-msgstr ""
+msgstr "Näytä linkki otsikossa"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Sidebar"
@@ -2206,6 +2515,10 @@ msgstr "Koko"
 msgid "Skills"
 msgstr "Taidot"
 
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Skip"
+msgstr "Ohita"
+
 #: src/routes/_home/route.tsx
 msgid "Skip to main content"
 msgstr "Siirry suoraan pääsisältöön"
@@ -2213,6 +2526,10 @@ msgstr "Siirry suoraan pääsisältöön"
 #: src/utils/locale.ts
 msgid "Slovak"
 msgstr "slovakki"
+
+#: src/utils/locale.ts
+msgid "Slovenian"
+msgstr ""
 
 #: src/dialogs/resume/index.tsx
 msgid "Slug"
@@ -2282,7 +2599,7 @@ msgstr "Tilastot"
 
 #: src/hooks/use-form-blocker.tsx
 msgid "Stay"
-msgstr ""
+msgstr "Pysy"
 
 #: src/components/input/rich-input.tsx
 msgid "Strike"
@@ -2329,6 +2646,19 @@ msgstr "Tunnisteet"
 msgid "Tags can be used to categorize your resume by keywords."
 msgstr "Tunnisteilla voit luokitella ansioluettelosi avainsanojen mukaan."
 
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Tailor Resume"
+msgstr "Räätälöidä ansioluettelo"
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Tailoring failed"
+msgstr "Räätälöinti epäonnistui"
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Tailoring your resume..."
+msgstr "Ansioluettelon räätälöinti..."
+
 #: src/utils/locale.ts
 msgid "Tamil"
 msgstr "tamili"
@@ -2350,6 +2680,7 @@ msgid "Templates"
 msgstr "Mallipohjat"
 
 #: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/job-search.tsx
 msgid "Test Connection"
 msgstr "Testaa yhteys"
 
@@ -2364,6 +2695,10 @@ msgstr "Tekstiväri"
 #: src/utils/locale.ts
 msgid "Thai"
 msgstr "thai"
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "The AI identified new skills from your experience that match this job. Select which ones to save back to your original resume for future applications. This will permanently modify your original resume and cannot be undone."
+msgstr "Tekoäly tunnisti kokemuksestasi uusia taitoja, jotka sopivat tähän työhön. Valitse, mitkä niistä haluat tallentaa takaisin alkuperäiseen ansioluetteloosi tulevia hakemuksia varten. Tämä muuttaa alkuperäistä ansioluetteloasi pysyvästi, eikä sitä voi peruuttaa."
 
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "The API key has been deleted successfully."
@@ -2405,12 +2740,17 @@ msgstr "Syötä sitten sovelluksen antama kuusinumeroinen koodi jatkaaksesi."
 
 #: src/routes/builder/$resumeId/-components/dock.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
+msgid "There was a problem while generating the DOCX, please try again."
+msgstr "DOCX-tiedoston luomisessa ilmeni ongelma, yritä uudelleen."
+
+#: src/routes/builder/$resumeId/-components/dock.tsx
+#: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
 msgid "There was a problem while generating the PDF, please try again in some time."
 msgstr "PDF:n luonnissa ilmeni ongelma, yritä hetken kuluttua uudelleen."
 
 #: src/components/ai/chat.tsx
 msgid "Thinking..."
-msgstr ""
+msgstr "Mietitään..."
 
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -2440,6 +2780,10 @@ msgstr "Tämä voi kestää muutaman minuutin riippuen tekoälypalveluntarjoajan
 msgid "This may take a while depending on the server capacity. Please do not close the window or refresh the page."
 msgstr "Tämä voi kestää hetken palvelimen kapasiteetista riippuen. Älä sulje ikkunaa tai päivitä sivua."
 
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "This month"
+msgstr "Tässä kuussa"
+
 #: src/components/resume/store/resume.ts
 msgid "This resume is locked and cannot be updated."
 msgstr "Tämä ansioluettelo on lukittu eikä sitä voi päivittää."
@@ -2451,6 +2795,10 @@ msgstr "Tämä osio on varattu henkilökohtaisille muistiinpanoillesi, jotka kos
 #: src/routes/auth/register.tsx
 msgid "This step is optional, but recommended."
 msgstr "Tämä vaihe on vapaaehtoinen, mutta suositeltava."
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "This week"
+msgstr "Tällä viikolla"
 
 #: src/dialogs/api-key/create.tsx
 msgid "This will generate a new API key to access the Reactive Resume API to allow machines to interact with your resume data."
@@ -2478,6 +2826,15 @@ msgstr "Otsikko"
 #: src/routes/dashboard/settings/danger-zone.tsx
 msgid "To delete your account, you need to enter the confirmation text and click the button below."
 msgstr "Poistaaksesi tilisi sinun täytyy syöttää vahvistusteksti ja napsauttaa alla olevaa painiketta."
+
+#: src/routes/dashboard/job-search/index.tsx
+msgid "To search for job listings, you need to configure your RapidAPI key in settings."
+msgstr "Jotta voit etsiä työpaikkailmoituksia, sinun on määritettävä RapidAPI-avaimesi asetuksissa."
+
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Today"
+msgstr "Tänään"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Track your resume's views and downloads"
@@ -2547,6 +2904,7 @@ msgstr "Kaksivaiheinen todennus on otettu käyttöön onnistuneesti."
 
 #: src/dialogs/resume/import.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -2565,6 +2923,10 @@ msgstr "Typografia"
 #: src/utils/locale.ts
 msgid "Ukrainian"
 msgstr "ukraina"
+
+#: src/routes/dashboard/job-search/-components/search-filters.tsx
+msgid "Under 3 years"
+msgstr "Alle 3 vuotta"
 
 #: src/components/input/rich-input.tsx
 msgid "Underline"
@@ -2612,7 +2974,7 @@ msgstr "Päivitä olemassa oleva sertifikaatti"
 
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Update an existing cover letter"
-msgstr ""
+msgstr "Päivitä olemassa oleva saatekirje"
 
 #: src/dialogs/resume/sections/custom.tsx
 msgid "Update an existing custom section"
@@ -2656,7 +3018,7 @@ msgstr "Päivitä olemassa oleva taito"
 
 #: src/dialogs/resume/sections/summary-item.tsx
 msgid "Update an existing summary item"
-msgstr ""
+msgstr "Päivitä olemassa oleva yhteenvetokohta"
 
 #: src/dialogs/resume/sections/volunteer.tsx
 msgid "Update an existing volunteer experience"
@@ -2677,7 +3039,7 @@ msgstr "Päivitä salasanasi"
 
 #: src/components/ai/chat.tsx
 msgid "Updated"
-msgstr ""
+msgstr "Päivitetty"
 
 #: src/dialogs/auth/change-password.tsx
 msgid "Updating your password..."
@@ -2773,6 +3135,10 @@ msgstr "Verkkosivusto"
 msgid "What do you want to rename this section to?"
 msgstr "Miksi haluat nimetä tämän osion uudelleen?"
 
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "What is JSearch API?"
+msgstr "Mikä on JSearch API?"
+
 #: src/routes/_home/-sections/faq.tsx
 msgid "What makes Reactive Resume different from other resume builders?"
 msgstr "Mikä erottaa Reactive Resumen muista ansioluettelon laatijoista?"
@@ -2803,6 +3169,10 @@ msgstr "Kyllä! Jokainen mallipohja on täysin muokattavissa. Voit vaihtaa väre
 msgid "Yes! Reactive Resume is completely free to use, with no hidden costs, premium tiers, or subscription fees. It's open-source and will always remain free."
 msgstr "Kyllä! Reactive Resume on täysin ilmainen käyttää – ei piilokuluja, premium-tasoja tai tilausmaksuja. Se on avoimen lähdekoodin ja pysyy aina ilmaisena."
 
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "Yesterday"
+msgstr "Eilen"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "You also have the option to deploy on your own servers using the Docker image."
 msgstr "Voit myös ottaa sen käyttöön omilla palvelimillasi Docker-kuvan avulla."
@@ -2817,7 +3187,7 @@ msgstr "Voit jakaa ansioluettelosi yksilöllisen julkisen URL-osoitteen kautta, 
 
 #: src/hooks/use-form-blocker.tsx
 msgid "You have unsaved changes that will be lost."
-msgstr ""
+msgstr "Sinulla on tallentamattomia muutoksia, jotka menetetään."
 
 #: src/routes/auth/forgot-password.tsx
 #: src/routes/auth/register.tsx
@@ -2859,6 +3229,10 @@ msgstr "Salasanasi on päivitetty onnistuneesti."
 #: src/routes/dashboard/settings/profile.tsx
 msgid "Your profile has been updated successfully."
 msgstr "Profiilisi on päivitetty onnistuneesti."
+
+#: src/routes/dashboard/settings/job-search.tsx
+msgid "Your RapidAPI key is stored locally on your browser. It is only sent to the server when making a request to search for jobs, and is never stored or logged on our servers."
+msgstr "RapidAPI-avaimesi tallennetaan paikallisesti selaimeesi. Se lähetetään palvelimelle vain silloin, kun pyydät hakemaan työpaikkoja, eikä sitä koskaan tallenneta tai kirjata palvelimillemme."
 
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/index.tsx
