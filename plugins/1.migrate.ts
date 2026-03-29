@@ -27,5 +27,13 @@ async function migrateDatabase() {
 }
 
 export default definePlugin(async () => {
-  await migrateDatabase();
+  try {
+    await migrateDatabase();
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("Skipping database migration in dev mode (no database connection)");
+    } else {
+      throw error;
+    }
+  }
 });

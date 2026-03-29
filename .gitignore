@@ -17,8 +17,7 @@ public/sw.js.map
 scripts/**/*.json
 public/workbox-*.js
 public/workbox-*.js.map
-# Auto Claude
+# Claude Code / Auto Claude
+.claude/
 .auto-claude/
-.auto-claude-allowlist
-.auto-claude-security.json
-.claude_settings.json
+*.pkg
