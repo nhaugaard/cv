@@ -30,10 +30,7 @@ export default definePlugin(async () => {
   try {
     await migrateDatabase();
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn("Skipping database migration in dev mode (no database connection)");
-    } else {
-      throw error;
-    }
+    if (process.env.NODE_ENV === "production") throw error;
+    console.warn("Database migration failed in dev, continuing without it");
   }
 });
