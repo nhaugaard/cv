@@ -24,3 +24,4 @@ public/workbox-*.js.map
 # claude-mem context files (not root CLAUDE.md which is tracked)
 **/CLAUDE.md
 !CLAUDE.md
+.gitnexus
